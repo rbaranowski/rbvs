@@ -1,0 +1,13 @@
+Package: rbvs
+Type: Package
+Title: Ranking-Based Variable Selection
+Version: 1.0
+Date: 2014-08-29
+Author: Rafal Baranowski
+Maintainer: Rafal Baranowski <r.baranowski@lse.ac.uk>
+Depends: stats
+Description: The package implements the Ranking-Based Variable Selection
+    algorithm for variable selection in high-dimensional data.
+License: GPL (>= 2)
+NeedsCompilation: yes
+Packaged: 2015-07-07 09:52:24 UTC; root
