@@ -6,7 +6,7 @@ Date: 2015-12-08
 Author: Rafal Baranowski, Patrick Breheny, Isaac Turner
 Maintainer: Rafal Baranowski <r.baranowski@lse.ac.uk>
 Depends: stats
-Description: Implements the Ranking-Based Variable Selection
+Description: The package implements the Ranking-Based Variable Selection
     algorithm for variable selection in high-dimensional data.
 License: GPL (>= 2)
 NeedsCompilation: yes
