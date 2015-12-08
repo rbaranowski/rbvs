@@ -1,3 +1,7 @@
+/* Rafal Baranowski 7 Dec 2015 Public Domain
+ based on the code of Patrick Breheny
+ */
+
 #ifndef LASSO_COEF_H
 #define LASSO_COEF_H
 

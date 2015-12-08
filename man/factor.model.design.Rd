@@ -2,7 +2,7 @@
 % Please edit documentation in R/misc.R
 \name{factor.model.design}
 \alias{factor.model.design}
-\title{Generate Factor model design matrix.}
+\title{Generate factor model design matrix.}
 \usage{
 factor.model.design(n, p, n.factors, sigma = 1)
 }
@@ -19,6 +19,10 @@ factor.model.design(n, p, n.factors, sigma = 1)
 \code{n} by \code{p} matrix with independent rows following factor model (see details).
 }
 \description{
-Here we will add the descritpion.
+This function enables a quick generation of random design matrices (see details).
+}
+\details{
+The elements of the matrix returned by this routine satisfy \eqn{X_{ij} = \sum_{l=1}^{n.factors} f_{ijl} \varphi_{il} + \theta_{ij}}{X_{ij} = \sum_{l=1}^{K} f_{ijl} \varphi_{il} + \theta_{ij}}
+with \eqn{f_{ijl}}{f_{ijl}}, \eqn{\varphi_{il}}{\varphi_{il}}, \eqn{\theta_{ij}}{\theta_{ij}}, \eqn{\varepsilon_{i}}{\varepsilon_{i}}  i.i.d. \eqn{\mathcal{N}(0,(sigma)^2)}{\mathcal{N}(0,(sigma)^2)}.
 }
 

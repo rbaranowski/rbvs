@@ -1,3 +1,4 @@
+/* Rafal Baranowski 7 Dec 2015 Public Domain */
 #include "rankings.h"
 
 int omega_with_id_t_cmp(const void *aa, const void *bb)

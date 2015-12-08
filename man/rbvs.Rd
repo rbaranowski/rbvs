@@ -24,7 +24,7 @@ rbvs(x, y, ...)
 \item{B}{Number of sample splits.}
 
 \item{measure}{Character with the name of the method used to measure the association between
-the response and the covariates. See details below.}
+the response and the covariates. See Details below.}
 
 \item{fun}{Function used to evaluate the measure given in \code{measure}. It is required when
 method=="user". Must have at least three arguments: \code{x} (covariates matrix),  \code{.y} (response vector), \code{subsamples} (a matrix, each row contains indices of the observations to be used); return a vector of the same length as
@@ -75,5 +75,8 @@ rbvs.object$subsets[[1]][[4]]
 #IRBSS algorithm
 rbvs.object <- rbvs(x,y)
 rbvs.object$active
+}
+\references{
+R. Baranowski, P. Fryzlewicz (2015), Ranking-Based Variable Selection, in submission (\url{http://personal.lse.ac.uk/baranows/rbvs/rbvs.pdf)}).
 }
 

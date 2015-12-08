@@ -1,3 +1,4 @@
+/* Rafal Baranowski 7 Dec 2015 Public Domain */
 #ifndef PEARSON_COR_H
 #define PEARSON_COR_H
 

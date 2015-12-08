@@ -1,3 +1,4 @@
+/* Rafal Baranowski 7 Dec 2015 Public Domain */
 #include "penalised_common.h"
 
 void update_residuals(double *residuals, double *x, unsigned int n,

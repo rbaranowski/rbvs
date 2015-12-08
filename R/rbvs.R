@@ -1,9 +1,9 @@
 #' @title Ranking-Based Variable Selection
 #' @description The package implements the Ranking-Based Variable Selection 
-#' algorithm proposed in Baranowski and Fryzlewicz (2014) for variable selection in high-dimensional data.
+#' algorithm proposed in Baranowski and Fryzlewicz (2015) for variable selection in high-dimensional data.
 #' @details The main routine of the package is \code{\link{rbvs}}.
 #' @docType package
-#' @references R. Baranowski, P. Fryzlewicz (2015), Ranking Based Variable Selection, in submission (\url{http://personal.lse.ac.uk/baranows/rbvs/rbvs.pdf)}).
+#' @references R. Baranowski, P. Fryzlewicz (2015), Ranking-Based Variable Selection, in submission (\url{http://personal.lse.ac.uk/baranows/rbvs/rbvs.pdf)}).
 #' @name rbvs-package
 
 NULL
@@ -16,7 +16,7 @@ NULL
 #' @param m Subsample size used in the RBSS algorithm.
 #' @param B Number of sample splits.
 #' @param measure Character with the name of the method used to measure the association between 
-#' the response and the covariates. See details below.
+#' the response and the covariates. See Details below.
 #' @param fun Function used to evaluate the measure given in \code{measure}. It is required when
 #' method=="user". Must have at least three arguments: \code{x} (covariates matrix),  \code{.y} (response vector), \code{subsamples} (a matrix, each row contains indices of the observations to be used); return a vector of the same length as 
 #' the number of covariates in \code{.x}. See for example \code{\link{pearson.cor}} or \code{\link{lasso.coef}}.   
@@ -53,7 +53,8 @@ NULL
 #' #IRBSS algorithm
 #' rbvs.object <- rbvs(x,y)
 #' rbvs.object$active
-
+#' @references R. Baranowski, P. Fryzlewicz (2015), Ranking-Based Variable Selection, in submission (\url{http://personal.lse.ac.uk/baranows/rbvs/rbvs.pdf)}).
+ 
 rbvs <- function(x,y,...) UseMethod("rbvs")
 
 #' @rdname rbvs

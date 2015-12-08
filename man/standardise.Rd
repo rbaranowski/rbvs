@@ -19,7 +19,7 @@ Standardises the columns of a numeric matrix \code{x} (similar to R-function \co
 If \code{x} is a vector, it is treated as a 1-column matrix.
 }
 \details{
-This function is much faster than \code{scale} as it does not validate the input arguments.
+This function is much faster than \code{scale}.
 }
 \examples{
 x <- matrix(rnorm(100*10), nrow = 100, ncol = 10)

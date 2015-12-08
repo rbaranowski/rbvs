@@ -1,3 +1,6 @@
+/* Rafal Baranowski 7 Dec 2015 Public Domain
+ based on the code of Patrick Breheny
+ */
 #include "mcplus_coef.h"
 
 double mcplus_shrinkage(double z, double l1, double l2, double gamma, double v)

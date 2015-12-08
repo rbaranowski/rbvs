@@ -27,7 +27,7 @@ Finds k-top-ranked sets defined in Baranowski and Fryzlewicz (2015). This routin
 Uses Portable qsort_r / qsort_s library ( Turner (2013)).
 }
 \references{
-R. Baranowski, P. Fryzlewicz (2015), Ranking Based Variable Selection, in submission (\url{http://personal.lse.ac.uk/baranows/rbvs/rbvs.pdf)}).\cr
+R. Baranowski, P. Fryzlewicz (2015), Ranking-Based Variable Selection, in submission (\url{http://personal.lse.ac.uk/baranows/rbvs/rbvs.pdf)}).\cr
 I. Turner (2013), Portable qsort_r / qsort_s, GitHub repository (\url{https://github.com/noporpoise/sort_r}).
 }
 

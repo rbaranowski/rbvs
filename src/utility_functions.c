@@ -1,3 +1,4 @@
+/* Rafal Baranowski 7 Dec 2015 Public Domain */
 #include "utility_functions.h"
 
 SEXP matrix_projection_in_place_r(SEXP x, SEXP projection, SEXP active,

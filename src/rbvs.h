@@ -1,3 +1,4 @@
+/* Rafal Baranowski 7 Dec 2015 Public Domain */
 #ifndef RBSS_H
 #define RBSS_H
 

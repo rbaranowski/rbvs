@@ -1,3 +1,6 @@
+/* Rafal Baranowski 7 Dec 2015 Public Domain
+  based on the code of Patrick Breheny
+ */
 #include "lasso_coef.h"
 
 SEXP lasso_coef_gaussian_r(SEXP subsamples, SEXP x, SEXP y, SEXP max_nonzero,

@@ -1,7 +1,7 @@
 #' @title Standardise data
 #' @description Standardises the columns of a numeric matrix \code{x} (similar to R-function \code{scale}).
 #' If \code{x} is a vector, it is treated as a 1-column matrix.
-#' @details This function is much faster than \code{scale} as it does not validate the input arguments.  
+#' @details This function is much faster than \code{scale}.  
 #' @param x A numeric matrix (or vector).
 #' @param scale A logical; if \code{TRUE} each column of \code{x} is divided by the square root of the sum of its centred squares.
 #' @return Matrix with centred (and optionally scaled) columns.
@@ -100,7 +100,7 @@ rankings <- function(x,k.max){
 #' \item{frequencies}{Frequencies corresponding to the most frequent subsests at the top of the rankings.}
 #' \item{subsets}{The moost frequent subsets.}
 #' @useDynLib rbvs k_top_ranked_sets_r
-#' @references R. Baranowski, P. Fryzlewicz (2015), Ranking Based Variable Selection, in submission (\url{http://personal.lse.ac.uk/baranows/rbvs/rbvs.pdf)}).\cr
+#' @references R. Baranowski, P. Fryzlewicz (2015), Ranking-Based Variable Selection, in submission (\url{http://personal.lse.ac.uk/baranows/rbvs/rbvs.pdf)}).\cr
 #' I. Turner (2013), Portable qsort_r / qsort_s, GitHub repository (\url{https://github.com/noporpoise/sort_r}).
 #' @export 
 
@@ -172,8 +172,8 @@ s.est.quotient <- function(prob){
 	
 }
 
-#' @title  Generate Factor model design matrix.
-#' @description Here we will add the descritpion.
+#' @title  Generate factor model design matrix.
+#' @description This function enables a quick generation of random design matrices (see details).
 #' @param n Number of independent realisations of the factor model.
 #' @param p Number of covariates.
 #' @param n.factors Number of factors.
@@ -181,7 +181,10 @@ s.est.quotient <- function(prob){
 #' @return \code{n} by \code{p} matrix with independent rows following factor model (see details).
 #' @useDynLib rbvs factor_model_r
 #' @export
+#' @details The elements of the matrix returned by this routine satisfy \eqn{X_{ij} = \sum_{l=1}^{n.factors} f_{ijl} \varphi_{il} + \theta_{ij}}{X_{ij} = \sum_{l=1}^{K} f_{ijl} \varphi_{il} + \theta_{ij}}
+#' with \eqn{f_{ijl}}{f_{ijl}}, \eqn{\varphi_{il}}{\varphi_{il}}, \eqn{\theta_{ij}}{\theta_{ij}}, \eqn{\varepsilon_{i}}{\varepsilon_{i}}  i.i.d. \eqn{\mathcal{N}(0,(sigma)^2)}{\mathcal{N}(0,(sigma)^2)}.
  
+
 factor.model.design <- function(n,p, n.factors, sigma=1){
   
   n <- as.integer(n)

@@ -1,3 +1,4 @@
+/* Rafal Baranowski 7 Dec 2015 Public Domain */
 #include  "rbvs.h"
 
 void factor_model_row(double *x, unsigned int row, unsigned int n,

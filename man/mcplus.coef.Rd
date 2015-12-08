@@ -2,7 +2,8 @@
 % Please edit documentation in R/measures.R
 \name{mcplus.coef}
 \alias{mcplus.coef}
-\title{Measure an impact of the covariates on the response using MC+}
+\title{Measure an impact of the covariates on the response using MC+.
+This function evaluates the MC+ coefficients regressing \code{y} onto the design matrix \code{x} over subsamples in \code{subsamples}.}
 \usage{
 mcplus.coef(x, y, subsamples, nonzero = NULL, family = c("gaussian",
   "binomial"), alpha = 1, gamma = 3, maxit = 500, tol = 0.01,
@@ -34,6 +35,18 @@ mcplus.coef(x, y, subsamples, nonzero = NULL, family = c("gaussian",
 \item{...}{Not in use.}
 }
 \description{
-Measure an impact of the covariates on the response using MC+
+Measure an impact of the covariates on the response using MC+.
+This function evaluates the MC+ coefficients regressing \code{y} onto the design matrix \code{x} over subsamples in \code{subsamples}.
+}
+\details{
+To solve the MC+ problem, we implement the coordinate descent algorithm as in Breheny Jian (2011).
+}
+\author{
+Rafal Baranowski, Patrick Breheny
+}
+\references{
+Zhang, Cun-Hui. "Nearly unbiased variable selection under minimax concave penalty." The Annals of Statistics (2010): 894-942.
+
+Breheny, Patrick, and Jian Huang. "Coordinate descent algorithms for nonconvex penalized regression, with applications to biological feature selection." The Annals of Applied Statistics 5.1 (2011): 232.
 }
 

@@ -1,3 +1,5 @@
+/* Rafal Baranowski 7 Dec 2015 Public Domain */
+
 #include "dist_cor.h"
 
 SEXP distance_cor_r(SEXP subsamples, SEXP x, SEXP y, SEXP index)

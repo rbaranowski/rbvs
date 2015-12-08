@@ -1,3 +1,4 @@
+/* Rafal Baranowski 7 Dec 2015 Public Domain */
 #include "rbvs.h"
 
 /* k is the subset size*/

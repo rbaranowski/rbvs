@@ -6,12 +6,12 @@
 \title{Ranking-Based Variable Selection}
 \description{
 The package implements the Ranking-Based Variable Selection
-algorithm proposed in Baranowski and Fryzlewicz (2014) for variable selection in high-dimensional data.
+algorithm proposed in Baranowski and Fryzlewicz (2015) for variable selection in high-dimensional data.
 }
 \details{
 The main routine of the package is \code{\link{rbvs}}.
 }
 \references{
-R. Baranowski, P. Fryzlewicz (2015), Ranking Based Variable Selection, in submission (\url{http://personal.lse.ac.uk/baranows/rbvs/rbvs.pdf)}).
+R. Baranowski, P. Fryzlewicz (2015), Ranking-Based Variable Selection, in submission (\url{http://personal.lse.ac.uk/baranows/rbvs/rbvs.pdf)}).
 }
 

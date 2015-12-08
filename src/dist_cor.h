@@ -1,3 +1,4 @@
+/* Rafal Baranowski 7 Dec 2015 Public Domain */
 #ifndef DIST_COR_H
 #define DIST_COR_H
 

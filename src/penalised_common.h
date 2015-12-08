@@ -1,3 +1,4 @@
+/* Rafal Baranowski 7 Dec 2015 Public Domain */
 #ifndef PENALISED_COMMON_H
 #define PENALISED_COMMON_H
 

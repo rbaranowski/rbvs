@@ -2,7 +2,8 @@
 % Please edit documentation in R/measures.R
 \name{distance.cor}
 \alias{distance.cor}
-\title{Measure an impact of the covariates on the response using distance correlation}
+\title{Measure an impact of the covariates on the response using the distance correlation
+This function evaluates the distance correlation between the response \code{y} and each column in the design matrix \code{x} over subsamples in \code{subsamples}.}
 \usage{
 distance.cor(x, y, subsamples, index = 1, ...)
 }
@@ -21,7 +22,8 @@ distance.cor(x, y, subsamples, index = 1, ...)
 Numeric \code{p} by \code{N} matrix with distance correlations evaluated for each subsample.
 }
 \description{
-Measure an impact of the covariates on the response using distance correlation
+Measure an impact of the covariates on the response using the distance correlation
+This function evaluates the distance correlation between the response \code{y} and each column in the design matrix \code{x} over subsamples in \code{subsamples}.
 }
 \references{
 Maria L. Rizzo and Gabor J. Szekely (2014). energy: E-statistics

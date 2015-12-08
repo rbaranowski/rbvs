@@ -1,3 +1,4 @@
+/* Rafal Baranowski 7 Dec 2015 Public Domain */
 #ifndef RANKINGS_H
 #define RANKINGS_H
 

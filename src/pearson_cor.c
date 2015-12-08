@@ -1,3 +1,4 @@
+/* Rafal Baranowski 7 Dec 2015 Public Domain */
 #include "pearson_cor.h"
 
 SEXP pearson_cor_r(SEXP subsamples, SEXP x, SEXP y)
