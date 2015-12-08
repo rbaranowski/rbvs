@@ -13,18 +13,18 @@ NULL
 #' @details Currently supported measures are: Pearson correlation coefficient (\code{measure="pc"}), Distance Correlation (\code{measure="dc"}), the regression coefficients estimated via Lasso (\code{measure="lasso"}), the regression coefficients estimated via MC+ (\code{measure="mcplus"}).
 #' @param x Matrix with \code{n} observations of \code{p} covariates in each row.
 #' @param y Response vector with \code{n} observations.
-#' @param m Subsample size used in the RBSS algorithm.
+#' @param m Subsample size used in the RBVS algorithm.
 #' @param B Number of sample splits.
 #' @param measure Character with the name of the method used to measure the association between 
 #' the response and the covariates. See Details below.
 #' @param fun Function used to evaluate the measure given in \code{measure}. It is required when
 #' method=="user". Must have at least three arguments: \code{x} (covariates matrix),  \code{.y} (response vector), \code{subsamples} (a matrix, each row contains indices of the observations to be used); return a vector of the same length as 
 #' the number of covariates in \code{.x}. See for example \code{\link{pearson.cor}} or \code{\link{lasso.coef}}.   
-#' @param s.est Function used to estimate the number of important covariates based on the RBSS path. Must accept \code{probs} (a vector with probabilities) as an argument. See \code{\link{s.est.quotient}} and Details below.
-#' @param iterative Logical variable indicating the type of the procedure. If \code{TRUE}, an iterative extension of the RBSS algorithm is launched.  
-#' @param use.residuals Logical. If true, the impact of the previously detected variables is removed from the response in the IRBSS procedure.
+#' @param s.est Function used to estimate the number of important covariates based on the RBVS path. Must accept \code{probs} (a vector with probabilities) as an argument. See \code{\link{s.est.quotient}} and Details below.
+#' @param iterative Logical variable indicating the type of the procedure. If \code{TRUE}, an iterative extension of the RBVS algorithm is launched.  
+#' @param use.residuals Logical. If true, the impact of the previously detected variables is removed from the response in the IRBVS procedure.
 #' @param min.max.freq Positive integer. Optional parameter - the algorithm stops searching for the most frequent set when the frequencies reach this value.
-#' @param max.iter Maximum number of iterations fot the IRBSS algorithm.
+#' @param max.iter Maximum number of iterations fot the IRBVS algorithm.
 #' @param k.max Maximum size of the subset of important variables..
 #' @param verbose Logical indicating wheter the progress of the algorithm should be reported.
 #' @param ... Other parameters that may be passed to \code{fun} and\code{s.est}. 
@@ -36,7 +36,7 @@ NULL
 #' \item{ranks}{Rankings evaluated (for the last iteration \code{iterative=TRUE})}
 #' \item{s.hat}{Vector with the number of the covariates selected at each iteration.}
 #' \item{active}{Vector with the selected covariates.}
-#' \item{timings}{Vector reporting the amount of time the (I)RBSS algorithm took at each iteration.}
+#' \item{timings}{Vector reporting the amount of time the (I)RBVS algorithm took at each iteration.}
 #' @export rbvs
 #' @rdname rbvs
 #' @examples
@@ -46,11 +46,11 @@ NULL
 #' active <- 1:4
 #' beta <- c(3,2.5,-1.7,-1)
 #' y <- 1*rnorm(200) +x[,active]%*%beta
-#' #RBSS algorithm
+#' #RBVS algorithm
 #' rbvs.object <- rbvs(x,y, iterative=FALSE)
 #' rbvs.object$active
 #' rbvs.object$subsets[[1]][[4]]
-#' #IRBSS algorithm
+#' #IRBVS algorithm
 #' rbvs.object <- rbvs(x,y)
 #' rbvs.object$active
 #' @references R. Baranowski, P. Fryzlewicz (2015), Ranking-Based Variable Selection, in submission (\url{http://personal.lse.ac.uk/baranows/rbvs/rbvs.pdf)}).

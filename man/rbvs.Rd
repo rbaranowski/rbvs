@@ -19,7 +19,7 @@ rbvs(x, y, ...)
 
 \item{...}{Other parameters that may be passed to \code{fun} and\code{s.est}.}
 
-\item{m}{Subsample size used in the RBSS algorithm.}
+\item{m}{Subsample size used in the RBVS algorithm.}
 
 \item{B}{Number of sample splits.}
 
@@ -30,17 +30,17 @@ the response and the covariates. See Details below.}
 method=="user". Must have at least three arguments: \code{x} (covariates matrix),  \code{.y} (response vector), \code{subsamples} (a matrix, each row contains indices of the observations to be used); return a vector of the same length as
 the number of covariates in \code{.x}. See for example \code{\link{pearson.cor}} or \code{\link{lasso.coef}}.}
 
-\item{s.est}{Function used to estimate the number of important covariates based on the RBSS path. Must accept \code{probs} (a vector with probabilities) as an argument. See \code{\link{s.est.quotient}} and Details below.}
+\item{s.est}{Function used to estimate the number of important covariates based on the RBVS path. Must accept \code{probs} (a vector with probabilities) as an argument. See \code{\link{s.est.quotient}} and Details below.}
 
-\item{iterative}{Logical variable indicating the type of the procedure. If \code{TRUE}, an iterative extension of the RBSS algorithm is launched.}
+\item{iterative}{Logical variable indicating the type of the procedure. If \code{TRUE}, an iterative extension of the RBVS algorithm is launched.}
 
-\item{use.residuals}{Logical. If true, the impact of the previously detected variables is removed from the response in the IRBSS procedure.}
+\item{use.residuals}{Logical. If true, the impact of the previously detected variables is removed from the response in the IRBVS procedure.}
 
 \item{k.max}{Maximum size of the subset of important variables..}
 
 \item{min.max.freq}{Positive integer. Optional parameter - the algorithm stops searching for the most frequent set when the frequencies reach this value.}
 
-\item{max.iter}{Maximum number of iterations fot the IRBSS algorithm.}
+\item{max.iter}{Maximum number of iterations fot the IRBVS algorithm.}
 
 \item{verbose}{Logical indicating wheter the progress of the algorithm should be reported.}
 }
@@ -53,7 +53,7 @@ Object of class rbvs with the following fields
 \item{ranks}{Rankings evaluated (for the last iteration \code{iterative=TRUE})}
 \item{s.hat}{Vector with the number of the covariates selected at each iteration.}
 \item{active}{Vector with the selected covariates.}
-\item{timings}{Vector reporting the amount of time the (I)RBSS algorithm took at each iteration.}
+\item{timings}{Vector reporting the amount of time the (I)RBVS algorithm took at each iteration.}
 }
 \description{
 Performs Rankings-Based Variable Selection using various measures of the dependence between the predictors and the response.
@@ -68,11 +68,11 @@ x <- matrix(rnorm(200*1000),200,1000)
 active <- 1:4
 beta <- c(3,2.5,-1.7,-1)
 y <- 1*rnorm(200) +x[,active]\%*\%beta
-#RBSS algorithm
+#RBVS algorithm
 rbvs.object <- rbvs(x,y, iterative=FALSE)
 rbvs.object$active
 rbvs.object$subsets[[1]][[4]]
-#IRBSS algorithm
+#IRBVS algorithm
 rbvs.object <- rbvs(x,y)
 rbvs.object$active
 }
