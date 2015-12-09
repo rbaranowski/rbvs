@@ -9,7 +9,7 @@ struct ranks_param {
 	unsigned int *ranks;
 };
 
-int sort_r_cmp(const void *ii, const void *jj, void *arg)
+int ranks_rows_cmp(const void *ii, const void *jj, void *arg)
 {
 	struct ranks_param param = *((struct ranks_param *)arg);
 	const unsigned int i = *((int *)ii);
@@ -84,7 +84,7 @@ unsigned int k_top_ranked_sets(unsigned int *ranks, unsigned int p,
 		for (j = 0; j < B; j++)
 			insertion_sort(&ranks[j * p], ranks[j * p + k], k);
 
-		sort_r(row_id, B, sizeof(unsigned int), sort_r_cmp, &param);
+		sort_r(row_id, B, sizeof(unsigned int), ranks_rows_cmp, &param);
 
 		current_id = row_id[0];
 		max_id = row_id[0];
