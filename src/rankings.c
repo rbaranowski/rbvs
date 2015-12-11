@@ -28,7 +28,7 @@ struct omega_with_id_t qselect_omega(struct omega_with_id_t *x, unsigned int p,
 				     unsigned int k)
 {
 
-#define SWAP(a, b) { tmp = x[a]; x[a] = x[b]; x[b] = tmp; }
+  #define SWAP(a, b) { tmp = x[a]; x[a] = x[b]; x[b] = tmp; }
 
 	struct omega_with_id_t tmp;
 

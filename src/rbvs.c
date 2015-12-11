@@ -1,6 +1,9 @@
 /* Rafal Baranowski 7 Dec 2015 Public Domain */
 #include "rbvs.h"
 
+
+
+
 /* k is the subset size*/
 
 struct ranks_param {
@@ -8,6 +11,53 @@ struct ranks_param {
 	unsigned int p;
 	unsigned int *ranks;
 };
+
+
+
+      
+void sort_rows(unsigned int *row_id, unsigned int B, unsigned int k, unsigned int p, unsigned int *ranks){
+    
+  #define COMPARE_ROWS(row_a, row_b)  memcmp(&ranks[row_id[row_a] * p], &ranks[row_id[row_b] * p], (k + 1) * sizeof(unsigned int)) 
+  #define COMPARE_ROW_TO_PIVOT(row_a)  memcmp(&ranks[row_id[row_a] * p], &ranks[pivot * p], (k + 1) * sizeof(unsigned int)) 
+  #define SWAP_ROWS(row_a, row_b) { tmp = row_id[row_a]; row_id[row_a] = row_id[row_b]; row_id[row_b] = tmp; }
+  
+  unsigned int i,j, tmp;
+  
+  /*insertion sort if B<=6*/
+  if(B <= 6){
+    
+    for(i = 1; i < B; i++){
+      j = i;
+      while(j>=1) if(COMPARE_ROWS(j-1, j) < 0){
+        SWAP_ROWS(j-1, j)
+        j--;
+      }else break;
+      
+    }
+    
+  }else if(B>0){
+    /*select the pivot*/
+    unsigned int pivot = row_id[B-1];
+
+    /*partitioning*/
+    i = 0;
+    for(j=0; j < B-1; j++){
+      if(COMPARE_ROW_TO_PIVOT(j) <= 0){
+        SWAP_ROWS(i, j)
+        i++;
+      }
+    }
+    
+    SWAP_ROWS(i,  B-1)
+    
+    
+    sort_rows(row_id, i, k, p, ranks);
+    sort_rows(&row_id[i+1], B-i-1, k, p, ranks);
+    
+  }
+  
+  
+}
 
 int ranks_rows_cmp(const void *ii, const void *jj, void *arg)
 {
@@ -85,6 +135,7 @@ unsigned int k_top_ranked_sets(unsigned int *ranks, unsigned int p,
 			insertion_sort(&ranks[j * p], ranks[j * p + k], k);
 
 		sort_r(row_id, B, sizeof(unsigned int), ranks_rows_cmp, &param);
+
 
 		current_id = row_id[0];
 		max_id = row_id[0];
