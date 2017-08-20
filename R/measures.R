@@ -257,7 +257,7 @@ mcplus.coef <- function(x,y,subsamples,
   
 }
 
-#' @title Measure an impact of the covariates on the response using Pearson correlatio.
+#' @title Measure an impact of the covariates on the response using Pearson correlation.
 #' This function evaluates the Pearson correlation coefficient between the response \code{y} and each column in the design matrix \code{x} over subsamples in \code{subsamples}.
 #' @param x Matrix with \code{n} observations of \code{p} covariates in each row.
 #' @param y Response vector with \code{n} observations.
