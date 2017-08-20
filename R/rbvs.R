@@ -59,7 +59,6 @@ rbvs <- function(x,y,...) UseMethod("rbvs")
 
 #' @rdname rbvs
 #' @method rbvs default 
-#' @useDynLib rbvs matrix_projection_in_place_r
 #' @export
 
 rbvs.default <- function(x, y, m, B=500, measure=c("pc","dc","lasso","mcplus", "user"), fun=NULL, s.est=s.est.quotient, iterative=TRUE, use.residuals=TRUE, k.max,min.max.freq=0,max.iter=10, verbose = TRUE, ...){
@@ -250,9 +249,7 @@ rbvs.default <- function(x, y, m, B=500, measure=c("pc","dc","lasso","mcplus", "
       if(use.residuals) y.current <- PI%*%y
 			else y.current <- y
 			
-      # y.current <- y
-      rm(x.current)
-      x.current <- .Call("matrix_projection_in_place_r", x, PI, rbvs.object$active)
+      x.current <- PI %*% x[, -rbvs.object$active]
 			
 		}
     toc <- proc.time()

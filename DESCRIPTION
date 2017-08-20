@@ -11,3 +11,4 @@ Description: Implements the Ranking-Based Variable Selection
 License: GPL (>= 2)
 NeedsCompilation: yes
 Packaged: 2015-07-07 09:52:24 UTC; root
+RoxygenNote: 6.0.1
