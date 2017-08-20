@@ -12,4 +12,3 @@ void A_matrix(double *distances,  unsigned int n, int *rows,  unsigned int m, do
 double dist_cor(double *A, double *B,  unsigned int n);
 
 #endif
-

@@ -2,7 +2,7 @@
 #include  "rbvs.h"
 
 void factor_model_row(double *x, unsigned int row, unsigned int n,
-		      unsigned int p, unsigned int n_factors, double sigma)
+		unsigned int p, unsigned int n_factors, double sigma)
 {
 	register unsigned int j, k, l;
 
@@ -52,7 +52,7 @@ SEXP factor_model_r(SEXP n, SEXP p, SEXP n_factors, SEXP sigma)
 #pragma omp parallel for
 	for (i = 0; i < val_n; i++) {
 		factor_model_row(ptr_x, i, val_n, val_p, val_n_factors,
-				 val_sigma);
+				val_sigma);
 	}
 
 	PutRNGstate();

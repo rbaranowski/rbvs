@@ -1,6 +1,6 @@
 /* Rafal Baranowski 7 Dec 2015 Public Domain
- based on the code of Patrick Breheny
- */
+   based on the code of Patrick Breheny
+   */
 #include "mcplus_coef.h"
 
 double mcplus_shrinkage(double z, double l1, double l2, double gamma, double v)
@@ -24,9 +24,9 @@ double mcplus_cutoff(double lambda1, double lambda2, double alpha, double gamma)
 }
 
 SEXP mcplus_coef_gaussian_r(SEXP subsamples, SEXP x, SEXP y, SEXP max_nonzero,
-			    SEXP alpha, SEXP gamma, SEXP tol,
-			    SEXP max_iterations, SEXP lambda_ratio,
-			    SEXP n_lambda)
+		SEXP alpha, SEXP gamma, SEXP tol,
+		SEXP max_iterations, SEXP lambda_ratio,
+		SEXP n_lambda)
 {
 
 	SEXP x_dim, subsamples_dim, coef;
@@ -67,17 +67,17 @@ SEXP mcplus_coef_gaussian_r(SEXP subsamples, SEXP x, SEXP y, SEXP max_nonzero,
 		for (k = 0; k < B; k++) {
 			// select subsample
 			select_subsample(&ptr_subsamples[k * m], m, ptr_x, n, p,
-					 ptr_y, ptr_x_subsample,
-					 ptr_y_subsample);
+					ptr_y, ptr_x_subsample,
+					ptr_y_subsample);
 			//evaluate mcplus coefficients
 			mcplus_coef_vector_gaussian(ptr_x_subsample, m, p,
-						    ptr_y_subsample,
-						    &ptr_coef[k * p],
-						    val_max_nonzero, val_alpha,
-						    val_gamma, val_tol,
-						    val_max_iterations,
-						    val_lambda_ratio,
-						    val_n_lambda);
+					ptr_y_subsample,
+					&ptr_coef[k * p],
+					val_max_nonzero, val_alpha,
+					val_gamma, val_tol,
+					val_max_iterations,
+					val_lambda_ratio,
+					val_n_lambda);
 		}
 
 		Free(ptr_x_subsample);
@@ -92,9 +92,9 @@ SEXP mcplus_coef_gaussian_r(SEXP subsamples, SEXP x, SEXP y, SEXP max_nonzero,
 }
 
 SEXP mcplus_coef_binomial_r(SEXP subsamples, SEXP x, SEXP y, SEXP max_nonzero,
-			    SEXP alpha, SEXP gamma, SEXP tol,
-			    SEXP max_iterations, SEXP lambda_ratio,
-			    SEXP n_lambda)
+		SEXP alpha, SEXP gamma, SEXP tol,
+		SEXP max_iterations, SEXP lambda_ratio,
+		SEXP n_lambda)
 {
 
 	SEXP x_dim, subsamples_dim, coef;
@@ -134,17 +134,17 @@ SEXP mcplus_coef_binomial_r(SEXP subsamples, SEXP x, SEXP y, SEXP max_nonzero,
 		for (k = 0; k < B; k++) {
 			// select subsample
 			select_subsample(&ptr_subsamples[k * m], m, ptr_x, n, p,
-					 ptr_y, ptr_x_subsample,
-					 ptr_y_subsample);
+					ptr_y, ptr_x_subsample,
+					ptr_y_subsample);
 			//evaluate mcplus coefficients
 			mcplus_coef_vector_binomial(ptr_x_subsample, m, p,
-						    ptr_y_subsample,
-						    &ptr_coef[k * p],
-						    val_max_nonzero, val_alpha,
-						    val_gamma, val_tol,
-						    val_max_iterations,
-						    val_lambda_ratio,
-						    val_n_lambda);
+					ptr_y_subsample,
+					&ptr_coef[k * p],
+					val_max_nonzero, val_alpha,
+					val_gamma, val_tol,
+					val_max_iterations,
+					val_lambda_ratio,
+					val_n_lambda);
 		}
 
 		Free(ptr_x_subsample);
@@ -158,17 +158,17 @@ SEXP mcplus_coef_binomial_r(SEXP subsamples, SEXP x, SEXP y, SEXP max_nonzero,
 }
 
 int mcplus_coef_vector_gaussian(double *x, unsigned int n, unsigned int p,
-				double *y, double *coef,
-				unsigned int max_nonzero, double alpha,
-				double gamma, double tol,
-				unsigned int max_iterations,
-				double lambda_ratio, unsigned int n_lambda)
+		double *y, double *coef,
+		unsigned int max_nonzero, double alpha,
+		double gamma, double tol,
+		unsigned int max_iterations,
+		double lambda_ratio, unsigned int n_lambda)
 {
 
 	// declare variables used in the program
 	register unsigned int iterations = 0, i = 0, j = 0, l = 0, n_nonzero =
-	    0, active_len = 0, active_strong_len = 0, converged =
-	    0, n_violations = 0;
+		0, active_len = 0, active_strong_len = 0, converged =
+		0, n_violations = 0;
 	double cutoff = 0.0;
 	double l1, l2, shift;
 	double *xj;
@@ -226,10 +226,10 @@ int mcplus_coef_vector_gaussian(double *x, unsigned int n, unsigned int p,
 
 			if (fabs(z[j]) > cutoff) {
 				if (is_in_array
-				    (active_strong, j,
-				     active_strong_len) == 0) {
+						(active_strong, j,
+						 active_strong_len) == 0) {
 					insertion_sort(active_strong, j,
-						       active_strong_len);
+							active_strong_len);
 					active_strong_len++;
 				}
 			}
@@ -239,9 +239,9 @@ int mcplus_coef_vector_gaussian(double *x, unsigned int n, unsigned int p,
 
 		while ((n_violations != 0) && (iterations < max_iterations)) {
 
- LOOP:
+LOOP:
 			while ((converged == 0)
-			       && (iterations < max_iterations)) {
+					&& (iterations < max_iterations)) {
 
 				iterations++;
 				converged = 1;
@@ -252,14 +252,14 @@ int mcplus_coef_vector_gaussian(double *x, unsigned int n, unsigned int p,
 					j = active[i];
 					xj = &x[j * n];
 					z[j] =
-					    cross_product(xj, residuals,
-							  n) * n_inv +
-					    tmp_coef[j];
+						cross_product(xj, residuals,
+								n) * n_inv +
+						tmp_coef[j];
 
 					// Update coef_j            
 					coef[j] =
-					    mcplus_shrinkage(z[j], l1, l2,
-							     gamma, 1.0);
+						mcplus_shrinkage(z[j], l1, l2,
+								gamma, 1.0);
 
 					// Update the residuals
 					shift = coef[j] - tmp_coef[j];
@@ -267,11 +267,11 @@ int mcplus_coef_vector_gaussian(double *x, unsigned int n, unsigned int p,
 					if (shift != 0) {
 
 						if ((converged == 1)
-						    && (fabs(shift) >
-							(tmp_coef[j] * tol)))
+								&& (fabs(shift) >
+									(tmp_coef[j] * tol)))
 							converged = 0;
 						update_residuals(residuals, xj,
-								 n, -shift);
+								n, -shift);
 						tmp_coef[j] = coef[j];
 
 					}
@@ -287,28 +287,28 @@ int mcplus_coef_vector_gaussian(double *x, unsigned int n, unsigned int p,
 
 			for (i = 0; i < active_strong_len; i++)
 				if (is_in_array
-				    (active, active_strong[i],
-				     active_len) == 0) {
+						(active, active_strong[i],
+						 active_len) == 0) {
 
 					j = active_strong[i];
 					xj = &x[j * n];
 					z[j] =
-					    cross_product(xj, residuals,
-							  n) * n_inv;
+						cross_product(xj, residuals,
+								n) * n_inv;
 
 					// Update coef_j              
 					coef[j] =
-					    mcplus_shrinkage(z[j], l1, l2,
-							     gamma, 1.0);
+						mcplus_shrinkage(z[j], l1, l2,
+								gamma, 1.0);
 
 					if (coef[j] != 0) {
 
 						insertion_sort(active, j,
-							       active_len);
+								active_len);
 						active_len++;
 
 						update_residuals(residuals, xj,
-								 n, -coef[j]);
+								n, -coef[j]);
 						tmp_coef[j] = coef[j];
 						n_violations++;
 
@@ -324,30 +324,30 @@ int mcplus_coef_vector_gaussian(double *x, unsigned int n, unsigned int p,
 
 			for (j = 0; j < p; j++)
 				if (is_in_array
-				    (active_strong, j,
-				     active_strong_len) == 0) {
+						(active_strong, j,
+						 active_strong_len) == 0) {
 
 					xj = &x[j * n];
 					z[j] =
-					    cross_product(xj, residuals,
-							  n) * n_inv;
+						cross_product(xj, residuals,
+								n) * n_inv;
 
 					// Update coef_j              
 					coef[j] =
-					    mcplus_shrinkage(z[j], l1, l2,
-							     gamma, 1.0);
+						mcplus_shrinkage(z[j], l1, l2,
+								gamma, 1.0);
 
 					if (coef[j] != 0) {
 
 						insertion_sort(active, j,
-							       active_len);
+								active_len);
 						active_len++;
 						insertion_sort(active_strong, j,
-							       active_strong_len);
+								active_strong_len);
 						active_strong_len++;
 
 						update_residuals(residuals, xj,
-								 n, -coef[j]);
+								n, -coef[j]);
 						tmp_coef[j] = coef[j];
 						n_violations++;
 
@@ -381,14 +381,14 @@ int mcplus_coef_vector_gaussian(double *x, unsigned int n, unsigned int p,
 }
 
 int mcplus_coef_vector_binomial(double *x, int n, int p, double *y,
-				double *coef, int max_nonzero, double alpha,
-				double gamma, double tol, int max_iterations,
-				double lambda_ratio, int n_lambda)
+		double *coef, int max_nonzero, double alpha,
+		double gamma, double tol, int max_iterations,
+		double lambda_ratio, int n_lambda)
 {
 
 	// declare variables used in the program
 	register unsigned int iterations = 0, i = 0, j = 0, l = 0, k =
-	    0, n_nonzero = 0, converged = 0, n_violations = 0;
+		0, n_nonzero = 0, converged = 0, n_violations = 0;
 	register double n_inv = 1.0 / ((double)n);
 	double cutoff = 0.0;
 	double l1, l2, shift;
@@ -475,10 +475,10 @@ int mcplus_coef_vector_binomial(double *x, int n, int p, double *y,
 
 			if (fabs(z[j]) > cutoff) {
 				if (is_in_array
-				    (active_strong, j,
-				     active_strong_len) == 0) {
+						(active_strong, j,
+						 active_strong_len) == 0) {
 					insertion_sort(active_strong, j,
-						       active_strong_len);
+							active_strong_len);
 					active_strong_len++;
 
 				}
@@ -489,11 +489,11 @@ int mcplus_coef_vector_binomial(double *x, int n, int p, double *y,
 
 		while ((n_violations != 0) && (iterations < max_iterations)) {
 
- LOOP:
+LOOP:
 			converged = 0;
 
 			while ((converged == 0)
-			       && (iterations < max_iterations)) {
+					&& (iterations < max_iterations)) {
 
 				iterations++;
 				converged = 1;
@@ -509,7 +509,7 @@ int mcplus_coef_vector_binomial(double *x, int n, int p, double *y,
 						w[i] = .0001;
 					} else {
 						pi = exp(eta[i]) / (1 +
-								    exp(eta
+								exp(eta
 									[i]));
 						w[i] = pi * (1 - pi);
 					}
@@ -566,8 +566,8 @@ int mcplus_coef_vector_binomial(double *x, int n, int p, double *y,
 
 					// Update coef_j            
 					coef[j] =
-					    mcplus_shrinkage(u, l1, l2, gamma,
-							     v);
+						mcplus_shrinkage(u, l1, l2, gamma,
+								v);
 
 					// Update the residuals
 					shift = coef[j] - tmp_coef[j];
@@ -575,8 +575,8 @@ int mcplus_coef_vector_binomial(double *x, int n, int p, double *y,
 					if (shift != 0) {
 
 						if ((converged == 1)
-						    && (fabs(shift) >
-							(tmp_coef[j] * tol)))
+								&& (fabs(shift) >
+									(tmp_coef[j] * tol)))
 							converged = 0;
 
 						for (k = 0; k < n; k++) {
@@ -601,8 +601,8 @@ int mcplus_coef_vector_binomial(double *x, int n, int p, double *y,
 
 			for (i = 0; i < active_strong_len; i++)
 				if (is_in_array
-				    (active, active_strong[i],
-				     active_len) == 0) {
+						(active, active_strong[i],
+						 active_len) == 0) {
 
 					j = active_strong[i];
 					xj = &x[j * n];
@@ -611,7 +611,7 @@ int mcplus_coef_vector_binomial(double *x, int n, int p, double *y,
 					if (fabs(z[j]) > l1) {
 
 						insertion_sort(active, j,
-							       active_len);
+								active_len);
 						active_len++;
 						n_violations++;
 
@@ -628,8 +628,8 @@ int mcplus_coef_vector_binomial(double *x, int n, int p, double *y,
 
 			for (k = 0; k < p; k++)
 				if (is_in_array
-				    (active_strong, k,
-				     active_strong_len) == 0) {
+						(active_strong, k,
+						 active_strong_len) == 0) {
 
 					j = k;
 					xj = &x[j * n];
@@ -638,10 +638,10 @@ int mcplus_coef_vector_binomial(double *x, int n, int p, double *y,
 					if (fabs(z[j]) > l1) {
 
 						insertion_sort(active, j,
-							       active_len);
+								active_len);
 						active_len++;
 						insertion_sort(active_strong, j,
-							       active_strong_len);
+								active_strong_len);
 						active_strong_len++;
 
 						n_violations++;

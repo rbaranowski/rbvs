@@ -25,10 +25,10 @@ int omega_with_id_t_cmp(const void *aa, const void *bb)
 }
 
 struct omega_with_id_t qselect_omega(struct omega_with_id_t *x, unsigned int p,
-				     unsigned int k)
+		unsigned int k)
 {
 
-  #define SWAP(a, b) { tmp = x[a]; x[a] = x[b]; x[b] = tmp; }
+#define SWAP(a, b) { tmp = x[a]; x[a] = x[b]; x[b] = tmp; }
 
 	struct omega_with_id_t tmp;
 
@@ -45,12 +45,12 @@ struct omega_with_id_t qselect_omega(struct omega_with_id_t *x, unsigned int p,
 	SWAP(p - 1, st);
 
 	return k == st ? x[st]
-	    : st > k ? qselect_omega(x, st, k)
-	    : qselect_omega(&x[st], p - st, k - st);
+		: st > k ? qselect_omega(x, st, k)
+		: qselect_omega(&x[st], p - st, k - st);
 }
 
 void omega_order(double *omega, unsigned int p, unsigned int *index,
-		 unsigned int k_max, struct omega_with_id_t *omega_with_id)
+		unsigned int k_max, struct omega_with_id_t *omega_with_id)
 {
 
 	register unsigned int j = 0;
@@ -68,7 +68,7 @@ void omega_order(double *omega, unsigned int p, unsigned int *index,
 		qselect_omega(omega_with_id, p, k_max);
 
 	qsort(omega_with_id, k_max, sizeof(struct omega_with_id_t),
-	      omega_with_id_t_cmp);
+			omega_with_id_t_cmp);
 
 	for (j = 0; j < k_max; j++)
 		index[j] = omega_with_id[j].id;
@@ -76,22 +76,22 @@ void omega_order(double *omega, unsigned int p, unsigned int *index,
 }
 
 void rankings(double *omega, unsigned int p, unsigned int B,
-	      unsigned int *ranks, unsigned int k_max)
+		unsigned int *ranks, unsigned int k_max)
 {
 
 	GetRNGstate();
 
-  #pragma omp parallel
+#pragma omp parallel
 	{
 
 		struct omega_with_id_t *omega_with_id = Calloc(p, struct omega_with_id_t);
 		unsigned int j;
 
-    #pragma omp for
+#pragma omp for
 		for (j = 0; j < B; j++)
 			omega_order(&omega[j * p], p, &ranks[j * k_max], k_max,
-				    omega_with_id);
-    
+					omega_with_id);
+
 		Free(omega_with_id);
 
 	}

@@ -26,7 +26,7 @@ SEXP pearson_cor_r(SEXP subsamples, SEXP x, SEXP y)
 #pragma omp parallel for
 	for (k = 0; k < B; k++)
 		pearson_cor_vector(&ptr_subsamples[k * m], m, ptr_x, n, p,
-				   ptr_y, &ptr_cor[k * p]);
+				ptr_y, &ptr_cor[k * p]);
 
 	UNPROTECT(3);
 
@@ -35,7 +35,7 @@ SEXP pearson_cor_r(SEXP subsamples, SEXP x, SEXP y)
 }
 
 double pearson_cor(unsigned int *rows, unsigned int m, double *x, double *y,
-		   double sum_y, double sd_y)
+		double sum_y, double sd_y)
 {
 
 	double sum_x = 0.0;
@@ -65,7 +65,7 @@ double pearson_cor(unsigned int *rows, unsigned int m, double *x, double *y,
 }
 
 void pearson_cor_vector(unsigned int *rows, unsigned int m, double *x,
-			unsigned int n, unsigned int p, double *y, double *cor)
+		unsigned int n, unsigned int p, double *y, double *cor)
 {
 
 	double sd_y = 0.0;
@@ -88,7 +88,7 @@ void pearson_cor_vector(unsigned int *rows, unsigned int m, double *x,
 	if (sd_y > DBL_EPSILON)
 		for (j = 0; j < p; j++)
 			cor[j] =
-			    pearson_cor(rows, m, &x[j * n], y, sum_y, sd_y);
+				pearson_cor(rows, m, &x[j * n], y, sum_y, sd_y);
 	else
 		for (j = 0; j < p; j++)
 			cor[j] = 0.0;

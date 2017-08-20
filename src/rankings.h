@@ -5,9 +5,9 @@
 #include "rbvs.h"
 
 struct omega_with_id_t{
-  double omega;
-  double x; //randomly assigned to solve ties
-  unsigned int id; 
+	double omega;
+	double x; //randomly assigned to solve ties
+	unsigned int id; 
 };
 
 

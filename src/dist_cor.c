@@ -53,14 +53,14 @@ SEXP distance_cor_r(SEXP subsamples, SEXP x, SEXP y, SEXP index)
 				ptr_rows = &ptr_subsamples[IDX(1, i, m)];
 				//compute A matrix      
 				A_matrix(ptr_y_dist, n, ptr_rows, m, ptr_A,
-					 val_index);
+						val_index);
 				//compute B matrix
 				A_matrix(ptr_x_dist, n, ptr_rows, m, ptr_B,
-					 val_index);
+						val_index);
 
 				// find the correlation
 				ptr_cor[IDX(j, i, p)] =
-				    dist_cor(ptr_A, ptr_B, m);
+					dist_cor(ptr_A, ptr_B, m);
 
 			}
 		}
@@ -112,21 +112,21 @@ double dist_cor(double *A, double *B, unsigned int n)
 }
 
 /*
-SEXP distances_r(SEXP x, SEXP index){
-  int n = length(x);
-  double val_index = REAL(index)[0];
-  
-  SEXP dist;
-  
-  PROTECT(dist = allocVector(REALSXP,(n *(n+1))/2));
-  
-  distances(REAL(x), REAL(dist), n, val_index);
-  
-  UNPROTECT(1);
-  
-  return dist;
-  
-}*/
+   SEXP distances_r(SEXP x, SEXP index){
+   int n = length(x);
+   double val_index = REAL(index)[0];
+
+   SEXP dist;
+
+   PROTECT(dist = allocVector(REALSXP,(n *(n+1))/2));
+
+   distances(REAL(x), REAL(dist), n, val_index);
+
+   UNPROTECT(1);
+
+   return dist;
+
+   }*/
 
 void distances(double *x, double *distances, unsigned int n)
 {
@@ -143,7 +143,7 @@ void distances(double *x, double *distances, unsigned int n)
 }
 
 void A_matrix(double *distances, unsigned int n, int *rows, unsigned int m,
-	      double *A, double index)
+		double *A, double index)
 {
 
 	register unsigned int i, j, id;
@@ -159,7 +159,7 @@ void A_matrix(double *distances, unsigned int n, int *rows, unsigned int m,
 
 			for (i = 1; i <= m; i++) {
 				A_means[j - 1] +=
-				    distances[IDXUT(rows[i - 1], id, n)];
+					distances[IDXUT(rows[i - 1], id, n)];
 			}
 
 			A_mean += A_means[j - 1];
@@ -172,10 +172,10 @@ void A_matrix(double *distances, unsigned int n, int *rows, unsigned int m,
 			for (i = j; i <= m; i++) {
 
 				A[IDXUT(i, j, m)] =
-				    distances[IDXUT
-					      (rows[i - 1], rows[j - 1],
-					       n)] - A_means[i - 1] -
-				    A_means[j - 1] + A_mean;
+					distances[IDXUT
+					(rows[i - 1], rows[j - 1],
+					 n)] - A_means[i - 1] -
+					A_means[j - 1] + A_mean;
 			}
 
 		}
@@ -187,7 +187,7 @@ void A_matrix(double *distances, unsigned int n, int *rows, unsigned int m,
 
 			for (i = 1; i <= m; i++) {
 				A_means[j - 1] +=
-				    distances[IDXUT(rows[i - 1], id, n)];
+					distances[IDXUT(rows[i - 1], id, n)];
 			}
 
 			A_mean += A_means[j - 1];
@@ -200,10 +200,10 @@ void A_matrix(double *distances, unsigned int n, int *rows, unsigned int m,
 			for (i = j; i <= m; i++) {
 
 				A[IDXUT(i, j, m)] =
-				    distances[IDXUT
-					      (rows[i - 1], rows[j - 1],
-					       n)] - A_means[i - 1] -
-				    A_means[j - 1] + A_mean;
+					distances[IDXUT
+					(rows[i - 1], rows[j - 1],
+					 n)] - A_means[i - 1] -
+					A_means[j - 1] + A_mean;
 			}
 
 		}

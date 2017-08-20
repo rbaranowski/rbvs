@@ -2,7 +2,7 @@
 #include "utility_functions.h"
 
 SEXP matrix_projection_in_place_r(SEXP x, SEXP projection, SEXP active,
-				  SEXP use_gpu)
+		SEXP use_gpu)
 {
 	SEXP x_new, x_dim;
 
@@ -15,7 +15,7 @@ SEXP matrix_projection_in_place_r(SEXP x, SEXP projection, SEXP active,
 	PROTECT(x_new = allocMatrix(REALSXP, n, p - n_active));
 
 	matrix_projection_in_place(REAL(x_new), REAL(x), n, p, REAL(projection),
-				   (unsigned int *)INTEGER(active), n_active);
+			(unsigned int *)INTEGER(active), n_active);
 
 	UNPROTECT(2);
 
@@ -50,8 +50,8 @@ void pi_x_product(double *x, unsigned int n, unsigned int p, double *projection)
 }
 
 void matrix_projection_in_place(double *x_new, double *x, unsigned int n,
-				unsigned int p, double *projection,
-				unsigned int *active, unsigned int n_active)
+		unsigned int p, double *projection,
+		unsigned int *active, unsigned int n_active)
 {
 
 	register unsigned int  j, k = 0;
@@ -81,7 +81,7 @@ SEXP standardise_matrix_r(SEXP x, SEXP scale)
 	PROTECT(x_dim = getAttrib(x, R_DimSymbol));
 
 	standardise_matrix(REAL(x), INTEGER(x_dim)[0], INTEGER(x_dim)[1],
-			   INTEGER(scale)[0]);
+			INTEGER(scale)[0]);
 
 	UNPROTECT(1);
 
@@ -144,8 +144,8 @@ void standardise_matrix(double *x, unsigned int n, unsigned int p, int scale)
 }
 
 void select_subsample(unsigned int *subsample, unsigned int m, double *x_src,
-		      unsigned int n, unsigned int p, double *y_src,
-		      double *x_dst, double *y_dest)
+		unsigned int n, unsigned int p, double *y_src,
+		double *x_dst, double *y_dest)
 {
 
 	register unsigned int i, j, id;
@@ -216,16 +216,16 @@ double qselect_double(double *x, unsigned int p, unsigned int k)
 	SWAP(p - 1, st);
 
 	return k == st ? x[st]
-	    : st > k ? qselect_double(x, st, k)
-	    : qselect_double(&x[st], p - st, k - st);
+		: st > k ? qselect_double(x, st, k)
+		: qselect_double(&x[st], p - st, k - st);
 }
 
 int is_in_array(unsigned int *sorted, unsigned int element, unsigned int length)
 {
 
 	unsigned int *item =
-	    (unsigned int *)bsearch(&element, sorted, length,
-				    sizeof(unsigned int), unsigned_int_cmp);
+		(unsigned int *)bsearch(&element, sorted, length,
+				sizeof(unsigned int), unsigned_int_cmp);
 	if (item != NULL)
 		return 1;
 	else

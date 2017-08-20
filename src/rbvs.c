@@ -1,9 +1,6 @@
 /* Rafal Baranowski 7 Dec 2015 Public Domain */
 #include "rbvs.h"
 
-
-
-
 /* k is the subset size*/
 
 struct ranks_param {
@@ -12,51 +9,48 @@ struct ranks_param {
 	unsigned int *ranks;
 };
 
-
-
-      
 void sort_rows(unsigned int *row_id, unsigned int B, unsigned int k, unsigned int p, unsigned int *ranks){
-    
-  #define COMPARE_ROWS(row_a, row_b)  memcmp(&ranks[row_id[row_a] * p], &ranks[row_id[row_b] * p], (k + 1) * sizeof(unsigned int)) 
-  #define COMPARE_ROW_TO_PIVOT(row_a)  memcmp(&ranks[row_id[row_a] * p], &ranks[pivot * p], (k + 1) * sizeof(unsigned int)) 
-  #define SWAP_ROWS(row_a, row_b) { tmp = row_id[row_a]; row_id[row_a] = row_id[row_b]; row_id[row_b] = tmp; }
-  
-  unsigned int i,j, tmp;
-  
-  /*insertion sort if B<=6*/
-  if(B <= 6){
-    
-    for(i = 1; i < B; i++){
-      j = i;
-      while(j>=1) if(COMPARE_ROWS(j-1, j) < 0){
-        SWAP_ROWS(j-1, j)
-        j--;
-      }else break;
-      
-    }
-    
-  }else if(B>0){
-    /*select the pivot*/
-    unsigned int pivot = row_id[B-1];
 
-    /*partitioning*/
-    i = 0;
-    for(j=0; j < B-1; j++){
-      if(COMPARE_ROW_TO_PIVOT(j) <= 0){
-        SWAP_ROWS(i, j)
-        i++;
-      }
-    }
-    
-    SWAP_ROWS(i,  B-1)
-    
-    
-    sort_rows(row_id, i, k, p, ranks);
-    sort_rows(&row_id[i+1], B-i-1, k, p, ranks);
-    
-  }
-  
-  
+#define COMPARE_ROWS(row_a, row_b)  memcmp(&ranks[row_id[row_a] * p], &ranks[row_id[row_b] * p], (k + 1) * sizeof(unsigned int)) 
+#define COMPARE_ROW_TO_PIVOT(row_a)  memcmp(&ranks[row_id[row_a] * p], &ranks[pivot * p], (k + 1) * sizeof(unsigned int)) 
+#define SWAP_ROWS(row_a, row_b) { tmp = row_id[row_a]; row_id[row_a] = row_id[row_b]; row_id[row_b] = tmp; }
+
+	unsigned int i,j, tmp;
+
+	/*insertion sort if B<=6*/
+	if(B <= 6){
+
+		for(i = 1; i < B; i++){
+			j = i;
+			while(j>=1) if(COMPARE_ROWS(j-1, j) < 0){
+				SWAP_ROWS(j-1, j)
+					j--;
+			}else break;
+
+		}
+
+	}else if(B>0){
+		/*select the pivot*/
+		unsigned int pivot = row_id[B-1];
+
+		/*partitioning*/
+		i = 0;
+		for(j=0; j < B-1; j++){
+			if(COMPARE_ROW_TO_PIVOT(j) <= 0){
+				SWAP_ROWS(i, j)
+					i++;
+			}
+		}
+
+		SWAP_ROWS(i,  B-1)
+
+
+			sort_rows(row_id, i, k, p, ranks);
+		sort_rows(&row_id[i+1], B-i-1, k, p, ranks);
+
+	}
+
+
 }
 
 int ranks_rows_cmp(const void *ii, const void *jj, void *arg)
@@ -69,11 +63,11 @@ int ranks_rows_cmp(const void *ii, const void *jj, void *arg)
 	const unsigned int *ranks = param.ranks;
 
 	return (memcmp
-		(&ranks[i * p], &ranks[j * p], (k + 1) * sizeof(unsigned int)));
+			(&ranks[i * p], &ranks[j * p], (k + 1) * sizeof(unsigned int)));
 }
 
 unsigned int bin_search(unsigned int *sorted, unsigned int element,
-			unsigned int low, unsigned int high)
+		unsigned int low, unsigned int high)
 {
 	if (high <= low)
 		return (element > sorted[low]) ? (low + 1) : low;
@@ -90,15 +84,15 @@ unsigned int bin_search(unsigned int *sorted, unsigned int element,
 }
 
 void insertion_sort(unsigned int *sorted, unsigned int element,
-		    unsigned int length)
+		unsigned int length)
 {
 
 	if (length > 0) {
 
 		unsigned int position =
-		    bin_search(sorted, element, 0, length - 1);
+			bin_search(sorted, element, 0, length - 1);
 		memmove(&sorted[position + 1], &sorted[position],
-			(length - position) * sizeof(unsigned int));
+				(length - position) * sizeof(unsigned int));
 		sorted[position] = element;
 
 	} else {
@@ -110,9 +104,9 @@ void insertion_sort(unsigned int *sorted, unsigned int element,
 /*function finds susbets which occur the most frequently in the top of the ranking*/
 
 unsigned int k_top_ranked_sets(unsigned int *ranks, unsigned int p,
-			       unsigned int B, unsigned int *best_freq,
-			       unsigned int *best_subset,
-			       unsigned int min_max_freq, unsigned int k_max)
+		unsigned int B, unsigned int *best_freq,
+		unsigned int *best_subset,
+		unsigned int min_max_freq, unsigned int k_max)
 {
 
 	register unsigned int k = 0, i, j;
@@ -147,8 +141,8 @@ unsigned int k_top_ranked_sets(unsigned int *ranks, unsigned int p,
 		for (j = 0; j <= (B - 1); j++) {
 
 			if (memcmp
-			    (&(ranks[current_id * p]), &(ranks[row_id[j] * p]),
-			     bytes_to_cmp)) {
+					(&(ranks[current_id * p]), &(ranks[row_id[j] * p]),
+					 bytes_to_cmp)) {
 				if (current_freq > max_freq) {
 					max_id = current_id;
 					max_freq = current_freq;
@@ -170,7 +164,7 @@ unsigned int k_top_ranked_sets(unsigned int *ranks, unsigned int p,
 		best_freq[k] = max_freq;
 
 		memcpy(&best_subset[(unsigned int)((k + 1) * k) / 2],
-		       &(ranks[max_id * p]), bytes_to_cmp);
+				&(ranks[max_id * p]), bytes_to_cmp);
 
 		if (max_freq == min_max_freq) {
 
@@ -202,15 +196,15 @@ SEXP k_top_ranked_sets_r(SEXP ranks, SEXP k_max, SEXP min_max_freq, SEXP active)
 	unsigned int val_k_max = INTEGER(k_max)[0];
 	unsigned int val_min_max_freq = INTEGER(min_max_freq)[0];
 	unsigned int *best_subset_tmp =
-	    Calloc((val_k_max * (val_k_max + 1)) / 2, unsigned int);
+		Calloc((val_k_max * (val_k_max + 1)) / 2, unsigned int);
 	unsigned int *best_freq_tmp = Calloc(val_k_max, unsigned int);
 	unsigned int *ranks_tmp = Calloc(p * B, unsigned int);
 
 	memcpy(ranks_tmp, INTEGER(ranks), p * B * sizeof(unsigned int));
 
 	unsigned int val_k =
-	    k_top_ranked_sets(ranks_tmp, p, B, best_freq_tmp, best_subset_tmp,
-			      val_min_max_freq, val_k_max);
+		k_top_ranked_sets(ranks_tmp, p, B, best_freq_tmp, best_subset_tmp,
+				val_min_max_freq, val_k_max);
 
 	SEXP subsets;
 	PROTECT(subsets = allocVector(VECSXP, val_k));
