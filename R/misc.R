@@ -25,13 +25,13 @@ standardise <- function(x,scale=TRUE){
 } 
 
 #' @title Generates subsamples. 
-#' @details Generates \code{m}-element subsamples drawn \eqn{\lfloor\frac{{n}}{{m}}\rfloor}{floor(n/m)} times  
+#' @description  Generates \code{m}-element subsamples drawn \eqn{\lfloor\frac{{n}}{{m}}\rfloor}{floor(n/m)} times  
 #' from \code{1,...,n} independently without replacement; such subsampling is repeated \code{B} times.
 #' @param n The sample size.
 #' @param m Subsample size (an integer lower or equal than \code{n}).
 #' @param B Number of sample splits.
 #' @return Matrix with the indices of the subsamples drawn in each column. 
-#' @references R. Baranowski, P. Fryzlewicz (2015), Ranking Based Variable Selection, in submission (\url{http://personal.lse.ac.uk/baranows/rbvs/rbvs.pdf)}).  
+#' @references R. Baranowski, P. Fryzlewicz (2016), Ranking Based Variable Selection, in submission (\url{http://stats.lse.ac.uk/fryzlewicz/rbss/rbss.pdf}).  
 #' @examples
 #' subsample(10,5,2)
 #' subsample(10,3,10)
@@ -100,7 +100,7 @@ rankings <- function(x,k.max){
 #' \item{frequencies}{Frequencies corresponding to the most frequent subsests at the top of the rankings.}
 #' \item{subsets}{The moost frequent subsets.}
 #' @useDynLib rbvs k_top_ranked_sets_r
-#' @references R. Baranowski, P. Fryzlewicz (2015), Ranking-Based Variable Selection, in submission (\url{http://personal.lse.ac.uk/baranows/rbvs/rbvs.pdf)}).\cr
+#' @references R. Baranowski, P. Fryzlewicz (2016), Ranking-Based Variable Selection, in submission (\url{http://stats.lse.ac.uk/fryzlewicz/rbss/rbss.pdf}).\cr
 #' I. Turner (2013), Portable qsort_r / qsort_s, GitHub repository (\url{https://github.com/noporpoise/sort_r}).
 #' @export 
 
@@ -157,7 +157,7 @@ top.ranked.sets <- function(rankings, k.max, min.max.freq=1,active=NULL){
 #' @return A list with the following fields:
 #' \item{scores}{Vector with the values of the criterion.}
 #' \item{s.hat}{The estimate of the number of important covariates.}
-#' @references R. Baranowski, P. Fryzlewicz (2015), Ranking Based Variable Selection, in submission (\url{http://personal.lse.ac.uk/baranows/rbvs/rbvs.pdf)}).
+#' @references R. Baranowski, P. Fryzlewicz (2016), Ranking Based Variable Selection, in submission (\url{http://stats.lse.ac.uk/fryzlewicz/rbss/rbss.pdf}).
 #' @export
 
 s.est.quotient <- function(prob){

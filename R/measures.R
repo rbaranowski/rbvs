@@ -1,5 +1,5 @@
 #' @title Measure an impact of the covariates on the response using Lasso
-#' This function evaluates the Lasso coefficients regressing \code{y} onto the design matrix \code{x} over subsamples in \code{subsamples}.
+#' @description This function evaluates the Lasso coefficients regressing \code{y} onto the design matrix \code{x} over subsamples in \code{subsamples}.
 #' @details To solve the Lasso problem, we implement the coordinate descent algorithm as in Breheny Jian (2011). 
 #' @param x Matrix with \code{n} observations of \code{p} covariates in each row.
 #' @param y Response vector with \code{n} observations.
@@ -128,7 +128,7 @@ lasso.coef <- function(x,y,subsamples,
 
 
 #' @title Measure an impact of the covariates on the response using MC+.
-#' This function evaluates the MC+ coefficients regressing \code{y} onto the design matrix \code{x} over subsamples in \code{subsamples}.
+#' @description This function evaluates the MC+ coefficients regressing \code{y} onto the design matrix \code{x} over subsamples in \code{subsamples}.
 #' @details To solve the MC+ problem, we implement the coordinate descent algorithm as in Breheny Jian (2011). 
 #' @param x Matrix with \code{n} observations of \code{p} covariates in each row.
 #' @param y Response vector with \code{n} observations.
@@ -258,7 +258,7 @@ mcplus.coef <- function(x,y,subsamples,
 }
 
 #' @title Measure an impact of the covariates on the response using Pearson correlation.
-#' This function evaluates the Pearson correlation coefficient between the response \code{y} and each column in the design matrix \code{x} over subsamples in \code{subsamples}.
+#' @description This function evaluates the Pearson correlation coefficient between the response \code{y} and each column in the design matrix \code{x} over subsamples in \code{subsamples}.
 #' @param x Matrix with \code{n} observations of \code{p} covariates in each row.
 #' @param y Response vector with \code{n} observations.
 #' @param subsamples Matrix with \code{m} indices of \code{N} subsamples in each column. 
@@ -304,7 +304,7 @@ pearson.cor <- function(x,y,subsamples,  ...){
 } 
 
 #' @title Measure an impact of the covariates on the response using the distance correlation 
-#' This function evaluates the distance correlation between the response \code{y} and each column in the design matrix \code{x} over subsamples in \code{subsamples}.
+#' @description This function evaluates the distance correlation between the response \code{y} and each column in the design matrix \code{x} over subsamples in \code{subsamples}.
 #' @useDynLib rbvs distance_cor_r
 #' @param x Matrix with \code{n} observations of \code{p} covariates in each row.
 #' @param y Response vector with \code{n} observations.

@@ -12,5 +12,5 @@ algorithm proposed in Baranowski and Fryzlewicz (2015) for variable selection in
 The main routine of the package is \code{\link{rbvs}}.
 }
 \references{
-R. Baranowski, P. Fryzlewicz (2015), Ranking-Based Variable Selection, in submission (\url{http://personal.lse.ac.uk/baranows/rbvs/rbvs.pdf)}).
+R. Baranowski, P. Fryzlewicz (2016), Ranking-Based Variable Selection, in submission (\url{http://stats.lse.ac.uk/fryzlewicz/rbss/rbss.pdf}).
 }

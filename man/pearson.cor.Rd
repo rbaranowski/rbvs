@@ -2,8 +2,7 @@
 % Please edit documentation in R/measures.R
 \name{pearson.cor}
 \alias{pearson.cor}
-\title{Measure an impact of the covariates on the response using Pearson correlation.
-This function evaluates the Pearson correlation coefficient between the response \code{y} and each column in the design matrix \code{x} over subsamples in \code{subsamples}.}
+\title{Measure an impact of the covariates on the response using Pearson correlation.}
 \usage{
 pearson.cor(x, y, subsamples, ...)
 }
@@ -18,4 +17,7 @@ pearson.cor(x, y, subsamples, ...)
 }
 \value{
 Numeric \code{p} by \code{N} matrix with Pearson correlations evaluated for each subsample.
+}
+\description{
+This function evaluates the Pearson correlation coefficient between the response \code{y} and each column in the design matrix \code{x} over subsamples in \code{subsamples}.
 }

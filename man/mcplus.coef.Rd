@@ -2,8 +2,7 @@
 % Please edit documentation in R/measures.R
 \name{mcplus.coef}
 \alias{mcplus.coef}
-\title{Measure an impact of the covariates on the response using MC+.
-This function evaluates the MC+ coefficients regressing \code{y} onto the design matrix \code{x} over subsamples in \code{subsamples}.}
+\title{Measure an impact of the covariates on the response using MC+.}
 \usage{
 mcplus.coef(x, y, subsamples, nonzero = NULL, family = c("gaussian",
   "binomial"), alpha = 1, gamma = 3, maxit = 500, tol = 0.01,
@@ -33,6 +32,9 @@ mcplus.coef(x, y, subsamples, nonzero = NULL, family = c("gaussian",
 \item{nlam}{Number of penalty parameters used in the MC+ algorithm.}
 
 \item{...}{Not in use.}
+}
+\description{
+This function evaluates the MC+ coefficients regressing \code{y} onto the design matrix \code{x} over subsamples in \code{subsamples}.
 }
 \details{
 To solve the MC+ problem, we implement the coordinate descent algorithm as in Breheny Jian (2011).

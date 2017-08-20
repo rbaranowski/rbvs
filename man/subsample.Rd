@@ -16,7 +16,7 @@ subsample(n, m, B)
 \value{
 Matrix with the indices of the subsamples drawn in each column.
 }
-\details{
+\description{
 Generates \code{m}-element subsamples drawn \eqn{\lfloor\frac{{n}}{{m}}\rfloor}{floor(n/m)} times  
 from \code{1,...,n} independently without replacement; such subsampling is repeated \code{B} times.
 }
@@ -25,5 +25,5 @@ subsample(10,5,2)
 subsample(10,3,10)
 }
 \references{
-R. Baranowski, P. Fryzlewicz (2015), Ranking Based Variable Selection, in submission (\url{http://personal.lse.ac.uk/baranows/rbvs/rbvs.pdf)}).
+R. Baranowski, P. Fryzlewicz (2016), Ranking Based Variable Selection, in submission (\url{http://stats.lse.ac.uk/fryzlewicz/rbss/rbss.pdf}).
 }

@@ -2,8 +2,7 @@
 % Please edit documentation in R/measures.R
 \name{lasso.coef}
 \alias{lasso.coef}
-\title{Measure an impact of the covariates on the response using Lasso
-This function evaluates the Lasso coefficients regressing \code{y} onto the design matrix \code{x} over subsamples in \code{subsamples}.}
+\title{Measure an impact of the covariates on the response using Lasso}
 \usage{
 lasso.coef(x, y, subsamples, nonzero = NULL, family = c("gaussian",
   "binomial"), alpha = 1, maxit = 500, tol = 0.01, lambda.ratio = 1e-06,
@@ -31,6 +30,9 @@ lasso.coef(x, y, subsamples, nonzero = NULL, family = c("gaussian",
 \item{nlam}{Number of penalty parameters used in the lasso algorithm.}
 
 \item{...}{Not in use.}
+}
+\description{
+This function evaluates the Lasso coefficients regressing \code{y} onto the design matrix \code{x} over subsamples in \code{subsamples}.
 }
 \details{
 To solve the Lasso problem, we implement the coordinate descent algorithm as in Breheny Jian (2011).

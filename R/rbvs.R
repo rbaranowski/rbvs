@@ -3,7 +3,7 @@
 #' algorithm proposed in Baranowski and Fryzlewicz (2015) for variable selection in high-dimensional data.
 #' @details The main routine of the package is \code{\link{rbvs}}.
 #' @docType package
-#' @references R. Baranowski, P. Fryzlewicz (2015), Ranking-Based Variable Selection, in submission (\url{http://personal.lse.ac.uk/baranows/rbvs/rbvs.pdf)}).
+#' @references R. Baranowski, P. Fryzlewicz (2016), Ranking-Based Variable Selection, in submission (\url{http://stats.lse.ac.uk/fryzlewicz/rbss/rbss.pdf}).
 #' @name rbvs-package
 
 NULL
@@ -53,7 +53,7 @@ NULL
 #' #IRBVS algorithm
 #' rbvs.object <- rbvs(x,y)
 #' rbvs.object$active
-#' @references R. Baranowski, P. Fryzlewicz (2015), Ranking-Based Variable Selection, in submission (\url{http://personal.lse.ac.uk/baranows/rbvs/rbvs.pdf)}).
+#' @references R. Baranowski, P. Fryzlewicz (2016), Ranking-Based Variable Selection, in submission (\url{http://stats.lse.ac.uk/fryzlewicz/rbss/rbss.pdf}).
  
 rbvs <- function(x,y,...) UseMethod("rbvs")
 

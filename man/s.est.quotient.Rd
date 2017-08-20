@@ -21,5 +21,5 @@ Estimates the number of elements in the top-ranked set.
 See Baranowski and Fryzlewicz (2015).
 }
 \references{
-R. Baranowski, P. Fryzlewicz (2015), Ranking Based Variable Selection, in submission (\url{http://personal.lse.ac.uk/baranows/rbvs/rbvs.pdf)}).
+R. Baranowski, P. Fryzlewicz (2016), Ranking Based Variable Selection, in submission (\url{http://stats.lse.ac.uk/fryzlewicz/rbss/rbss.pdf}).
 }
