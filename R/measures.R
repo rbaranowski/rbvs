@@ -256,6 +256,52 @@ mcplus.coef <- function(x,y,subsamples,
   }
   
 }
+#' @title Measure an impact of the covariates on the response using marginal empirical likelihood.
+#' @description This function evaluates marginal empirical likelihood between the response \code{y} and each column in the design matrix \code{x} over subsamples in \code{subsamples}.
+#' @param x Matrix with \code{n} observations of \code{p} covariates in each row.
+#' @param y Response vector with \code{n} observations.
+#' @param subsamples Matrix with \code{m} indices of \code{N} subsamples in each column. 
+#' @param ... Not in use.
+#' @return Numeric \code{p} by \code{N} matrix with empirical likelihood evaluated for each subsample.
+#' @useDynLib rbvs empirical_lh_r
+#' @references Chang, Jinyuan, Cheng Yong Tang, and Yichao Wu. "Marginal empirical likelihood and sure independence feature screening." Annals of Statistics 41.4 (2013).
+#' @export
+
+empirical.lh <- function(x,y,subsamples,  ...){
+  
+  x <- as.matrix(x)
+  storage.mode(x) <- "double"
+  
+  y <- as.numeric(y)
+  storage.mode(y) <- "double"
+  
+  subsamples <- as.matrix(subsamples)
+  storage.mode(subsamples) <- "integer"
+  
+  
+  #check if the sizes of x and y match
+  
+  n <- length(y)
+  if(nrow(x) != n) stop("The number of rows in 'x' must be equal to the length of 'y'.")
+  
+  #check for NA's
+  if(any(is.na(x))) stop("Matix 'x' cannot contain NA's.")
+  if(any(is.na(y))) stop("Vector 'y' cannot contain NA's.")
+  if(any(is.na(subsamples))) stop("Matrix 'subsamples' cannot contain NA's.")
+  
+  
+  #check if subsamples are actually subsamples
+  min.ind <- min(subsamples)
+  max.ind <- max(subsamples)
+  
+  if(min.ind < 1 || max.ind > n) stop("Elements of 'subsamples' must be between 1 and length(y).")
+  
+  return(.Call("empirical_lh_r", 
+               subsamples,
+               x,
+               y))  
+  
+} 
 
 #' @title Measure an impact of the covariates on the response using Pearson correlation.
 #' @description This function evaluates the Pearson correlation coefficient between the response \code{y} and each column in the design matrix \code{x} over subsamples in \code{subsamples}.

@@ -10,7 +10,7 @@ NULL
 
 #' @title Ranking-Based Variable Selection
 #' @description Performs Rankings-Based Variable Selection using various measures of the dependence between the predictors and the response.
-#' @details Currently supported measures are: Pearson correlation coefficient (\code{measure="pc"}), Distance Correlation (\code{measure="dc"}), the regression coefficients estimated via Lasso (\code{measure="lasso"}), the regression coefficients estimated via MC+ (\code{measure="mcplus"}).
+#' @details Currently supported measures are: Pearson correlation coefficient (\code{measure="pc"}), Marginal Empirical Likelihood (\code{measure="elh"}), Distance Correlation (\code{measure="dc"}), the regression coefficients estimated via Lasso (\code{measure="lasso"}), the regression coefficients estimated via MC+ (\code{measure="mcplus"}).
 #' @param x Matrix with \code{n} observations of \code{p} covariates in each row.
 #' @param y Response vector with \code{n} observations.
 #' @param m Subsample size used in the RBVS algorithm.
@@ -61,7 +61,7 @@ rbvs <- function(x,y,...) UseMethod("rbvs")
 #' @method rbvs default 
 #' @export
 
-rbvs.default <- function(x, y, m, B=500, measure=c("pc","dc","lasso","mcplus", "user"), fun=NULL, s.est=s.est.quotient, iterative=TRUE, use.residuals=TRUE, k.max,min.max.freq=0,max.iter=10, verbose = TRUE, ...){
+rbvs.default <- function(x, y, m, B=500, measure=c("pc","dc","elh", "lasso","mcplus", "user"), fun=NULL, s.est=s.est.quotient, iterative=TRUE, use.residuals=TRUE, k.max,min.max.freq=0,max.iter=10, verbose = TRUE, ...){
 	
 	## VERIFY THE INPUT ARGUMENT
 	## data 
@@ -182,6 +182,7 @@ rbvs.default <- function(x, y, m, B=500, measure=c("pc","dc","lasso","mcplus", "
 	                      dc=distance.cor,
 	                      lasso=lasso.coef,
 	                      mcplus=mcplus.coef,
+	                      elh=empirical.lh,
 	                      user=fun)
 
 	fun.args <- names(as.list(args(fun)))

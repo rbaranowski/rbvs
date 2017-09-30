@@ -6,7 +6,7 @@ void factor_model_row(double *x, unsigned int row, unsigned int n,
 {
 	register unsigned int j, k, l;
 
-	double factor = 0.0;
+	double factor;
 
 	l = row;
 	for (j = 0; j < p; j++) {
@@ -49,7 +49,7 @@ SEXP factor_model_r(SEXP n, SEXP p, SEXP n_factors, SEXP sigma)
 	double *ptr_x = REAL(x);
 
 	GetRNGstate();
-#pragma omp parallel for
+	#pragma omp parallel for
 	for (i = 0; i < val_n; i++) {
 		factor_model_row(ptr_x, i, val_n, val_p, val_n_factors,
 				val_sigma);
@@ -59,5 +59,5 @@ SEXP factor_model_r(SEXP n, SEXP p, SEXP n_factors, SEXP sigma)
 
 	UNPROTECT(1);
 
-	return (x);
+	return x;
 }

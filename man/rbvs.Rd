@@ -7,10 +7,10 @@
 \usage{
 rbvs(x, y, ...)
 
-\method{rbvs}{default}(x, y, m, B = 500, measure = c("pc", "dc", "lasso",
-  "mcplus", "user"), fun = NULL, s.est = s.est.quotient, iterative = TRUE,
-  use.residuals = TRUE, k.max, min.max.freq = 0, max.iter = 10,
-  verbose = TRUE, ...)
+\method{rbvs}{default}(x, y, m, B = 500, measure = c("pc", "dc", "elh",
+  "lasso", "mcplus", "user"), fun = NULL, s.est = s.est.quotient,
+  iterative = TRUE, use.residuals = TRUE, k.max, min.max.freq = 0,
+  max.iter = 10, verbose = TRUE, ...)
 }
 \arguments{
 \item{x}{Matrix with \code{n} observations of \code{p} covariates in each row.}
@@ -59,7 +59,7 @@ Object of class rbvs with the following fields
 Performs Rankings-Based Variable Selection using various measures of the dependence between the predictors and the response.
 }
 \details{
-Currently supported measures are: Pearson correlation coefficient (\code{measure="pc"}), Distance Correlation (\code{measure="dc"}), the regression coefficients estimated via Lasso (\code{measure="lasso"}), the regression coefficients estimated via MC+ (\code{measure="mcplus"}).
+Currently supported measures are: Pearson correlation coefficient (\code{measure="pc"}), Marginal Empirical Likelihood (\code{measure="elh"}), Distance Correlation (\code{measure="dc"}), the regression coefficients estimated via Lasso (\code{measure="lasso"}), the regression coefficients estimated via MC+ (\code{measure="mcplus"}).
 }
 \examples{
 set.seed(1) 

@@ -5,7 +5,7 @@
 \alias{rbvs-package}
 \title{Ranking-Based Variable Selection}
 \description{
-The package implements the Ranking-Based Variable Selection 
+Implements the Ranking-Based Variable Selection 
 algorithm proposed in Baranowski and Fryzlewicz (2015) for variable selection in high-dimensional data.
 }
 \details{

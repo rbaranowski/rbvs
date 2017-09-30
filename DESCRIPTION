@@ -1,7 +1,7 @@
 Package: rbvs
 Type: Package
 Title: Ranking-Based Variable Selection
-Version: 1.1.0
+Version: 1.2.0
 Date: 2017-08-20
 Author: Rafal Baranowski, Patrick Breheny, Isaac Turner
 Maintainer: Rafal Baranowski <packagemaintenance@rbaranowski.com>
